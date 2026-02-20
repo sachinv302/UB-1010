@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart City Seva</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://kit.fontawesome.com/6c5a5c1baf.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">🏙 Smart City Seva</div>
+    <div class="nav-links">
+        {% if session.get("role") == "admin" %}
+            <a href="/admin_dashboard"><i class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        {% elif session.get("user_id") %}
+            <a href="/user_dashboard"><i class="fas fa-user"></i> Dashboard</a>
+            <a href="/submit"><i class="fas fa-plus-circle"></i> Submit</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <a href="/admin_login">Admin</a>
+        {% endif %}
+        <button onclick="toggleDarkMode()" class="dark-toggle">🌙</button>
+    </div>
+</nav>
+
+<div class="main-container">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

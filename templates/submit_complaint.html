@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="form-wrapper">
+
+    <div class="form-card">
+        <div class="form-header">
+            <h2><i class="fas fa-exclamation-circle"></i> Submit Complaint</h2>
+            <p>Report city issues and help improve urban living</p>
+        </div>
+
+        <form method="POST">
+
+            <!-- DESCRIPTION -->
+            <div class="form-group">
+                <label>Complaint Description</label>
+                <div class="input-box">
+                    <i class="fas fa-pen"></i>
+                    <textarea name="description" rows="4"
+                        placeholder="Describe the issue in detail..." required></textarea>
+                </div>
+            </div>
+
+            <!-- CATEGORY -->
+            <div class="form-group">
+                <label>Category</label>
+                <div class="input-box">
+                    <i class="fas fa-tags"></i>
+                    <select name="category" required>
+                        <option value="">Select Category</option>
+                        <option>Electricity</option>
+                        <option>Water</option>
+                        <option>Road</option>
+                        <option>Garbage</option>
+                        <option>Drainage</option>
+                        <option>Street Light</option>
+                        <option>Public Safety</option>
+                        <option>Traffic</option>
+                        <option>Infrastructure</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- LOCATION -->
+           <div class="form-group">
+    <label>Location Name</label>
+    <div class="input-box">
+        <i class="fas fa-map-marker-alt"></i>
+        <input type="text" name="location" 
+               placeholder="Enter exact location (e.g., MG Road, Near Hospital)" 
+               required>
+    </div>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Submit Complaint
+            </button>
+
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="stats">
+    <div class="stat-card stat1">
+        <h2>{{ complaints|length }}</h2>
+        <p>Total Complaints</p>
+    </div>
+
+    <div class="stat-card stat2">
+        <h2>
+            {{ complaints | selectattr("status","equalto","Pending") | list | length }}
+        </h2>
+        <p>Pending</p>
+    </div>
+
+    <div class="stat-card stat3">
+        <h2>
+            {{ complaints | selectattr("status","equalto","Resolved") | list | length }}
+        </h2>
+        <p>Resolved</p>
+    </div>
+</div>
+
+<div class="card">
+<h2>Complaint Analytics</h2>
+
+<table>
+<tr>
+<th>User</th>
+<th>Description</th>
+<th>Urgency</th>
+<th>Score</th>
+<th>Status</th>
+<th>Update</th>
+</tr>
+
+{% for c in complaints %}
+<tr>
+<td>{{ c.name }}</td>
+<td>{{ c.description }}</td>
+<td class="{{ c.urgency|lower }}">{{ c.urgency }}</td>
+<td>{{ c.priority_score }}</td>
+<td>{{ c.status }}</td>
+<td>
+<form method="POST" action="/update_status/{{ c.id }}">
+<select name="status">
+<option>Pending</option>
+<option>In Progress</option>
+<option>Resolved</option>
+</select>
+<button>Update</button>
+</form>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+{% endblock %}
